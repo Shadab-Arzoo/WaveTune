@@ -117,7 +117,7 @@ router.get("/:videoId", async (req, res) => {
     res.json({
       videoId: streamMeta.videoId,
       title: streamMeta.title,
-      audioUrl: `${baseUrl}/api/stream/${videoId}/audio`,
+      audioUrl: streamMeta.audioUrl, // Stream directly from YouTube to avoid Render IP blocks
       duration: streamMeta.duration,
       thumbnail: streamMeta.thumbnail,
     });
