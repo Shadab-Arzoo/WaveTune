@@ -4,19 +4,16 @@ import axios, { AxiosError } from "axios";
 // Try emulator and local-hosted backends automatically.
 const MAC_LAN_IP = "192.168.0.134";
 
-const BASE_URL_CANDIDATES =
-  Platform.OS === "android"
-    ? [
-        "http://10.0.2.2:5001/api",
-        `http://${MAC_LAN_IP}:5001/api`,
-        "http://127.0.0.1:5001/api",
-        "http://localhost:5001/api",
-      ]
-    : [
-        "http://127.0.0.1:5001/api",
-        "http://localhost:5001/api",
-        `http://${MAC_LAN_IP}:5001/api`,
-      ];
+// Use the live Render backend URL
+const LIVE_BACKEND_URL = "https://wavetune-if3q.onrender.com/api";
+
+const BASE_URL_CANDIDATES = [
+  LIVE_BACKEND_URL,
+  // Local fallbacks
+  "http://10.0.2.2:5001/api",
+  `http://${MAC_LAN_IP}:5001/api`,
+  "http://localhost:5001/api",
+];
 
 let activeBaseUrl = BASE_URL_CANDIDATES[0];
 
