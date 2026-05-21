@@ -22,9 +22,8 @@ async function extractAudioMeta(videoId) {
 
   const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-  // Keep extraction order predictable: title, url, duration.
   const { stdout } = await execAsync(
-    `yt-dlp -f "bestaudio[ext=m4a]/bestaudio" --get-title --get-url --get-duration "${youtubeUrl}" --no-warnings 2>/dev/null`,
+    `yt-dlp -f "bestaudio/best" --extractor-args "youtube:player_client=android" --get-title --get-url --get-duration "${youtubeUrl}" --no-warnings 2>/dev/null`,
     { maxBuffer: 1024 * 1024, timeout: 30000 }
   );
 
